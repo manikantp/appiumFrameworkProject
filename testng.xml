@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1" >
+    <parameter name="wifiName"  value="Mani's Wifi"/>
+    <parameter name="typeCell" value="iOS enter keys"/>
+    <parameter name="typeSafariMobBrowser" value="MacBook Pro"/>
+    <parameter name="username" value="manikant_p"/>
+    <parameter name="typeCell" value="iOS enter keys"/>
+
+    <test name="appiumBasicTest" >
+        <classes>
+            <class name="AppiumFramework.iOSBasics" />
+        </classes>
+    </test>
+</suite>
