@@ -16,7 +16,7 @@ public class appiumUtils {
     }
     public double getFormattedAmount(String amount){
         Double price = Double.parseDouble(amount.substring(1));
-        return price ;
+        return price;
     }
 
     public void waitForElementToAppear(WebElement ele){
