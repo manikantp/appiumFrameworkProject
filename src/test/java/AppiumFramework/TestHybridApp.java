@@ -3,6 +3,7 @@ package AppiumFramework;
 import io.appium.java_client.AppiumBy;
 import org.mani.base.androidBaseClass;
 import org.mani.pageObjects.android.CartPage;
+import org.mani.pageObjects.android.HomePage;
 import org.mani.pageObjects.android.ProductCatalogue;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
@@ -19,10 +20,10 @@ public class TestHybridApp extends androidBaseClass {
     //formPage.countrySelection("Argentina");
 
     ProductCatalogue productCatalogue = formPage.clickLetsShopButton();
+    HomePage homePage = new HomePage(driver);
 
-    String homeScreenText = driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Products']")).getText();
-    Thread.sleep(4000);
-    Assert.assertEquals(homeScreenText,"Products","Did not navigate to home page");
+    String homeScreenText  = homePage.getHomePageHeaderText();
+    Assert.assertEquals(homeScreenText,"Products");
 
 
         productCatalogue.addItemToCartByIndex(0);
@@ -36,7 +37,6 @@ public class TestHybridApp extends androidBaseClass {
         cartPage.submitOrder();
     //driver.rotate(ScreenOrientation.LANDSCAPE);
         //driver.toggleWifi();
-        //Select sel = new Select(driver.findElement(By.xpath("")));
 
     }
     @Test(priority = 2,enabled = false)

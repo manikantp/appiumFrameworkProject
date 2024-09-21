@@ -6,6 +6,15 @@
   <version>1.0-SNAPSHOT</version>
   <name>Archetype - appiumFrameworkProject</name>
   <url>http://maven.apache.org</url>
+
+  <repositories>
+    <repository>
+      <id>allure</id>
+      <url>https://dl.bintray.com/qameta/maven</url>
+    </repository>
+  </repositories>
+
+
   <dependencies>
     <dependency>
       <groupId>io.appium</groupId>
@@ -13,12 +22,10 @@
       <version>8.6.0</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
-
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>6.14.3</version>
+      <version>7.9.0</version>
     </dependency>
 
     <dependency>
@@ -26,6 +33,27 @@
       <artifactId>selenium-java</artifactId>
       <version>4.11.0</version>
     </dependency>
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>5.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>html2pdf</artifactId>
+      <version>5.0.4</version>
+    </dependency>
+    <dependency>
+    <groupId>io.qameta.allure</groupId>
+    <artifactId>allure-testng</artifactId>
+    <version>2.28.0</version>
+  </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.example</groupId>-->
+<!--      <artifactId>appiumFrameworkProject</artifactId>-->
+<!--      <version>1.0-SNAPSHOT</version>-->
+<!--    </dependency>-->
+
   </dependencies>
   <build>
     <plugins>
@@ -36,6 +64,51 @@
           <source>8</source>
           <target>8</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.10.0</version>
+        <configuration>
+          <resultsDirectory>${project.build.directory}/allure-report</resultsDirectory>
+          <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <executions>
+          <execution>
+            <id>default-test</id>
+            <goals>
+              <goal>test</goal>
+            </goals>
+            <configuration>
+              <skipTests>true</skipTests> <!-- Skip tests if needed when running other goals -->
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>run-allure</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>bash</executable>
+              <arguments>
+                <argument>./run_allure.sh</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

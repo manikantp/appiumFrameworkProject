@@ -7,9 +7,13 @@
     <parameter name="username" value="manikant_p"/>
     <parameter name="typeCell" value="iOS enter keys"/>
 
+    <listeners>
+        <listener class-name="org.mani.utils.TestListener"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
     <test name="appiumBasicTest" >
         <classes>
-            <class name="AppiumFramework.iOSBasics" />
+            <class name="AppiumFramework.TestHybridApp" />
         </classes>
     </test>
 </suite>
